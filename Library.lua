@@ -98,14 +98,14 @@ local ObsidianImageManager = {
     Assets = {
         TransparencyTexture = {
             RobloxId = 72770100978203,
-            Path = "mavrocc/assets/TransparencyTexture.png",
+            Path = "mavrocc/assets/transtex.png",
 
             Id = nil
         },
         
         SaturationMap = {
             RobloxId = 119121422850894,
-            Path = "mavrocc/assets/SaturationMap.png",
+            Path = "mavrocc/assets/satmap.png",
 
             Id = nil
         }
@@ -6543,3 +6543,4 @@ Library:GiveSignal(Teams.ChildRemoved:Connect(OnTeamChange))
 getgenv().Library = Library
 
 return Library
+
