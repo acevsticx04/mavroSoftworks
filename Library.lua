@@ -97,14 +97,14 @@ local Library = {
 local ObsidianImageManager = {
     Assets = {
         TransparencyTexture = {
-            RobloxId = 139785960036434,
+            RobloxId = 72770100978203,
             Path = "mavrocc/assets/TransparencyTexture.png",
 
             Id = nil
         },
         
         SaturationMap = {
-            RobloxId = 4155801252,
+            RobloxId = 119121422850894,
             Path = "mavrocc/assets/SaturationMap.png",
 
             Id = nil
@@ -170,7 +170,7 @@ do
             return
         end
 
-        local URLPath = AssetPath:gsub("Obsidian/", "")
+        local URLPath = AssetPath:gsub("mavrocc/", "")
         writefile(AssetPath, game:HttpGet(`{BaseURL}{URLPath}`))
     end
 
@@ -6541,4 +6541,5 @@ Library:GiveSignal(Teams.ChildAdded:Connect(OnTeamChange))
 Library:GiveSignal(Teams.ChildRemoved:Connect(OnTeamChange))
 
 getgenv().Library = Library
+
 return Library
