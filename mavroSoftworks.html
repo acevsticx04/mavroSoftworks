@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        @keyframes FadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes Glow {
+            0%, 100% {
+                box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        @keyframes SlideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .Container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px 0;
+            border-bottom: 1px solid #222;
+            animation: FadeInUp 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #fff;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .Subtitle {
+            font-size: 1.2em;
+            color: #888;
+            font-weight: 300;
+        }
+
+        section {
+            margin-bottom: 50px;
+            animation: FadeInUp 1s ease-out;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #fff;
+            font-weight: 400;
+            border-left: 3px solid #555;
+            padding-left: 15px;
+            animation: SlideInFromLeft 0.6s ease-out;
+        }
+
+        .SkillsGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .SkillItem {
+            background: linear-gradient(135deg, #151515 0%, #0f0f0f 100%);
+            padding: 20px 15px;
+            text-align: center;
+            border-radius: 8px;
+            border: 1px solid #222;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .SkillItem::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .SkillItem:hover::before {
+            left: 100%;
+        }
+
+        .SkillItem:hover {
+            background: linear-gradient(135deg, #1a1a1a 0%, #151515 100%);
+            border-color: #444;
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .SkillName {
+            display: block;
+            font-size: 1em;
+            color: #ccc;
+        }
+
+        .TeamItem {
+            background: linear-gradient(135deg, #151515 0%, #0f0f0f 100%);
+            padding: 25px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #222;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .TeamItem::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.03);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .TeamItem:hover::after {
+            width: 500px;
+            height: 500px;
+        }
+
+        .TeamItem:hover {
+            background: linear-gradient(135deg, #1a1a1a 0%, #151515 100%);
+            border-color: #444;
+            transform: translateX(10px);
+            box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .TeamContent {
+            position: relative;
+            z-index: 1;
+        }
+
+        .TeamName {
+            font-size: 1.3em;
+            color: #fff;
+            margin-bottom: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .TeamItem:hover .TeamName {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .TeamRole {
+            color: #888;
+            font-size: 0.95em;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .TeamItem:hover .TeamRole {
+            color: #aaa;
+        }
+
+        .TeamStatus {
+            display: inline-block;
+            padding: 6px 14px;
+            background: #222;
+            border-radius: 4px;
+            font-size: 0.85em;
+            color: #999;
+            margin-top: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .TeamStatus.Active {
+            background: #1a3a1a;
+            color: #6c6;
+            animation: Glow 2s ease-in-out infinite;
+        }
+
+        .TeamItem:hover .TeamStatus {
+            transform: scale(1.1);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 80px;
+            padding-top: 30px;
+            border-top: 1px solid #222;
+            color: #666;
+            font-size: 0.9em;
+            animation: FadeInUp 1.2s ease-out;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .SkillsGrid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="Container">
+
+        <section>
+            <h2>Languages & Technologies</h2>
+            <div class="SkillsGrid">
+                <div class="SkillItem"><span class="SkillName">Lua/Luau</span></div>
+                <div class="SkillItem"><span class="SkillName">C++</span></div>
+                <div class="SkillItem"><span class="SkillName">C#</span></div>
+                <div class="SkillItem"><span class="SkillName">C</span></div>
+                <div class="SkillItem"><span class="SkillName">Python</span></div>
+                <div class="SkillItem"><span class="SkillName">JavaScript</span></div>
+                <div class="SkillItem"><span class="SkillName">TypeScript</span></div>
+                <div class="SkillItem"><span class="SkillName">Java</span></div>
+                <div class="SkillItem"><span class="SkillName">Kotlin</span></div>
+                <div class="SkillItem"><span class="SkillName">HTML</span></div>
+                <div class="SkillItem"><span class="SkillName">CSS</span></div>
+                <div class="SkillItem"><span class="SkillName">.NET</span></div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Development Teams</h2>
+            <div class="TeamItem">
+                <div class="TeamContent">
+                    <div class="TeamName">mavroSoftworks</div>
+                    <div class="TeamRole">Multi-platform development across various communities</div>
+                    <span class="TeamStatus Active">Active</span>
+                </div>
+            </div>
+            <div class="TeamItem">
+                <div class="TeamContent">
+                    <div class="TeamName">999.cc</div>
+                    <div class="TeamRole">Lua/Luau scripting team - Roblox exploiting community</div>
+                    <span class="TeamStatus">Past</span>
+                </div>
+            </div>
+            <div class="TeamItem">
+                <div class="TeamContent">
+                    <div class="TeamName">Fate Hub</div>
+                    <div class="TeamRole">Lua/Luau scripting team - Roblox exploiting community</div>
+                    <span class="TeamStatus">Past</span>
+                </div>
+            </div>
+            <div class="TeamItem">
+                <div class="TeamContent">
+                    <div class="TeamName">Biggie Hub</div>
+                    <div class="TeamRole">Lua/Luau scripting team - Roblox exploiting community</div>
+                    <span class="TeamStatus">Past</span>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2025 mavroSoftworks, Inc.</p>
+        </footer>
+    </div>
+</body>
+</html>
